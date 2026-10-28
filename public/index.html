@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Wallet Card Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Wallet Card Studio</span>
+      </div>
+      <span class="badge" id="certBadge" title="Imzolash sertifikati holati">
+        <span class="dot"></span><span id="certText">tekshirilmoqda</span>
+      </span>
+    </header>
+
+    <main class="layout">
+      <section class="stage" aria-label="Karta ko'rinishi">
+        <div class="wallet">
+          <div class="wallet-bar">
+            <span class="wallet-title">Wallet</span>
+            <span class="wallet-dots" aria-hidden="true">•••</span>
+          </div>
+
+          <article class="pass" id="pass" aria-live="polite">
+            <div class="pass-strip" id="strip">
+              <span class="strip-hint" id="stripHint">Karta rasmini yuklang</span>
+            </div>
+            <div class="pass-body">
+              <div class="pass-head">
+                <img class="pass-logo" id="passLogo" alt="" hidden />
+                <span class="pass-name" id="pName">Mening kartam</span>
+              </div>
+              <div class="pass-grid">
+                <div class="pass-field">
+                  <span class="pass-label">BALANS</span>
+                  <span class="pass-value" id="pBalance">0 so‘m</span>
+                </div>
+                <div class="pass-field right">
+                  <span class="pass-label">KARTA EGASI</span>
+                  <span class="pass-value small" id="pHolder">ISM FAMILIYA</span>
+                </div>
+              </div>
+              <div class="pass-foot">
+                <span class="pass-extra" id="pExtra"></span>
+                <span class="pass-qr" id="pQr" aria-hidden="true">QR</span>
+              </div>
+            </div>
+          </article>
+
+          <p class="stage-note">Bu Apple Wallet kartasi. Apple Pay’dagi bank kartasi dizayni bank tomonidan beriladi va o‘zgartirilmaydi.</p>
+        </div>
+
+        <div class="lan" id="lanBox" hidden>
+          <span class="lan-label">iPhone’da ochish</span>
+          <code id="lanUrl"></code>
+          <button type="button" class="ghost" id="copyBtn">Nusxalash</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Sozlamalar">
+        <div class="field-group">
+          <div class="group-head">
+            <h2>Karta rasmi</h2>
+            <span class="hint">1125 × 369 tavsiya</span>
+          </div>
+          <label class="drop" id="drop">
+            <input type="file" id="imageInput" accept="image/*" hidden />
+            <span class="drop-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <path d="M3 15l4.5-4.5a2 2 0 0 1 2.8 0L15 15" />
+                <circle cx="16.5" cy="9.5" r="1.3" />
+              </svg>
+            </span>
+            <span class="drop-text" id="dropText">Rasm tanlash yoki sudrab tashlash</span>
+          </label>
+          <div class="row">
+            <label class="mini-upload">
+              <input type="file" id="logoInput" accept="image/*" hidden />
+              <span>Logo (ixtiyoriy)</span>
+            </label>
+            <button type="button" class="ghost" id="clearImage">Rasmni tozalash</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <h2>Ma’lumotlar</h2>
+          <label class="field">
+            <span>Karta nomi</span>
+            <input id="fName" type="text" maxlength="40" placeholder="Mening kartam" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Karta egasi</span>
+            <input id="fHolder" type="text" maxlength="40" placeholder="ISM FAMILIYA" autocomplete="off" />
+          </label>
+          <div class="two">
+            <label class="field">
+              <span>Balans / qiymat</span>
+              <input id="fBalance" type="text" maxlength="24" placeholder="0 so‘m" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>Qo‘shimcha</span>
+              <input id="fExtra" type="text" maxlength="48" placeholder="Amal qiladi: 12/29" autocomplete="off" />
+            </label>
+          </div>
+          <label class="field">
+            <span>QR matni</span>
+            <input id="fBarcode" type="text" maxlength="200" placeholder="https://example.uz" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="field-group">
+          <h2>Rang</h2>
+          <div class="swatches" id="swatches" role="radiogroup" aria-label="Fon rangi"></div>
+        </div>
+
+        <div class="field-group download">
+          <button type="button" class="primary" id="makeBtn">
+            <span>Kartani yaratish</span>
+            <span class="primary-sub">Apple Wallet uchun .pkpass</span>
+          </button>
+          <p class="hint" id="signHint">Sertifikat topilsa imzolangan .pkpass, aks holda imzosiz ZIP beriladi.</p>
+          <p class="error" id="error" role="alert" hidden></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>© 2026 Ozodbek Xoshimov Xusanovich · Xoshimov Group</span>
+      <span class="foot-sep">·</span>
+      <span>Apple Pay emas, Apple Wallet</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>

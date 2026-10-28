@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+
+# sertifikatlar hech qachon repoga tushmasin
+certs/*.pem
+certs/*.key
+certs/*.p12
+certs/config.json
+
+# natijalar
+*.pkpass
+karta-imzosiz.zip

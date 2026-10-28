@@ -1,0 +1,13 @@
+{
+  "name": "apple-wallet-card-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Apple Wallet uchun o'z rasmingiz bilan karta (pkpass) yasash vositasi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
